@@ -39,4 +39,4 @@ def solve_hydrogen_state(
     score = jnp.abs(evals - e_ana) + jnp.where(mask, 0.0, 1e9)
     
     idx = jnp.argmin(score)
-    return float(evals[idx]), evecs[:, idx], grid
+    return evals[idx], evecs[:, idx], grid
