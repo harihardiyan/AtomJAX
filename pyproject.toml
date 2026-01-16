@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "atomjax"
+version = "0.1.0"
+description = "A JAX-native high-precision radial Schrödinger solver"
+authors = [
+    {name = "Hari Hardiyan", email = "lorozloraz@gmail.com"},
+]
+dependencies = [
+    "jax>=0.4.0",
+    "jaxlib>=0.4.0",
+    "numpy",
+]
+requires-python = ">=3.9"
+license = {text = "MIT"}
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I"]
