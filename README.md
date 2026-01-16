@@ -5,6 +5,9 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![JAX](https://img.shields.io/badge/Framework-JAX-red.svg)](https://github.com/google/jax)
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/harihardiyan/AtomJAX/blob/main/notebooks/AtomJAX_Tutorial.ipynb)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **AtomJAX** is a high-performance, JAX-native numerical engine designed to solve the radial Schrödinger equation for hydrogenic atoms. By leveraging 4th-order finite difference (FD4) methods and sophisticated boundary condition handling, AtomJAX provides a robust framework for calculating atomic eigenstates, energies, and observables with academic-grade precision.
 
 ## 🔬 Scientific Context
