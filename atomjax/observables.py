@@ -1,20 +1,16 @@
 import jax.numpy as jnp
-from atomjax.integration import compute_expectation_value, simpson_integral
+from atomjax.integration import simpson_integral
 
-def calculate_observables(u: jnp.ndarray, r: jnp.ndarray, h: float, z: float):
-    """Calculates <1/r> and <1/r^3> with analytical comparisons."""
-    # Normalize wavefunction
-    norm = jnp.sqrt(simpson_integral(u**2, h))
-    u_norm = u / norm
-
-    # <1/r>
-    rinv_num = compute_expectation_value(u_norm, r, h, lambda x: 1.0/x)
+def calculate_expectation_rinv(u: jnp.ndarray, r: jnp.ndarray, h: jnp.ndarray) -> jnp.ndarray:
+    """Calculates the expectation value <1/r>."""
+    # Normalize the wavefunction first
+    norm_sq = simpson_integral(u, h)
+    u_norm = u / jnp.sqrt(norm_sq)
     
-    # <1/r^3>
-    rinv3_num = compute_expectation_value(u_norm, r, h, lambda x: 1.0/x**3)
+    # Compute the integrand for <1/r>
+    integrand = (u_norm**2) / r
     
-    return {
-        "rinv": rinv_num,
-        "rinv3": rinv3_num,
-        "is_normalized": jnp.isclose(norm, 1.0)
-    }
+    # We reuse simpson_integral logic by passing the weighted integrand
+    # Note: simpson_integral expects u, so we pass sqrt(integrand) effectively
+    u_eff = jnp.sqrt(jnp.maximum(integrand, 0.0))
+    return simpson_integral(u_eff, h)
